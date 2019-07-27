@@ -1,0 +1,30 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+	"name": "Node.js 8",
+	"dockerFile": "../landscape/devcontainer/Dockerfile",
+	
+	// Uncomment the next line if you want to publish any ports.
+	"appPort": [
+		3000,
+		3001
+	],
+
+	// Uncomment the next line if you want to add in default container specific settings.json values
+	// "settings":  { "workbench.colorTheme": "Quiet Light" },
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "yarn install",
+
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	],
+
+	// Mount your .ssh folder to /root/.ssh-localhost so we can copy its contents
+	"runArgs": [ "-v", "${env:HOME}${env:USERPROFILE}/.ssh:/root/.ssh-localhost:ro" ],
+
+	// Copy the contents to the correct location and set permissions
+	"postCreateCommand": "mkdir -p ~/.ssh && cp -r ~/.ssh-localhost/* ~/.ssh && chmod 700 ~/.ssh && chmod 600 ~/.ssh/*",
+
+	"workspaceMount": "src=[WORKSPACE_DIRECTORY],dst=/workspace,type=bind,consistency=delegated",
+	"workspaceFolder": "/workspace"
+}
