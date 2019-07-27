@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "npm run latest; npm config set scripts-prepend-node-path true; export PROJECT_PATH=\"$PWD\"; npm explore interactive-landscape -- npm run build",
+    "dev": "npm config set scripts-prepend-node-path true; export PROJECT_PATH=\"$PWD\"; npm explore interactive-landscape -- npm run open:src",
     "latest": "npm install interactive-landscape@latest"
   },
   "author": "CNCF",
